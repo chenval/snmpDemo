@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties>
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/snmp_msg?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+    </properties>
+    <environments default="test">
+        <environment id="development">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="pooled">
+                <property name="driver" value="${driver}"></property>
+                <property name="url" value="${url}"></property>
+                <property name="username" value="${username}"></property>
+                <property name="password" value="${password}"></property>
+            </dataSource>
+        </environment>
+        <environment id="test">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="pooled">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/snmp_msg?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"></property>
+                <property name="username" value="root"></property>
+                <property name="password" value="123456"></property>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/DataDaoMapper.xml"/>
+    </mappers>
+</configuration>

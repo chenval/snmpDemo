@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DataDao">
+    <!-- statement，内容：sql语句。
+      id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致
+      resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一
+      parameterType：参数的类型，使用动态代理之后和方法的参数类型一致
+    -->
+    <!--
+      1.#{},预编译的方式preparedstatement，使用占位符替换，防止sql注入，一个参数的时候，任意参数名可以接收
+      2.${},普通的Statement，字符串直接拼接，不可以防止sql注入，一个参数的时候，必须使用${value}接收参数
+    -->
+    <resultMap id="data" type="entry.Data">
+        <result column="cpuCount" property="cpuCount" jdbcType="INTEGER"/>
+        <result column="cpuUtilization" property="cpuUtilization" jdbcType="INTEGER"/>
+        <result column="availMem" property="availMem" jdbcType="BIGINT"/>
+        <result column="totalMem" property="totalMem" jdbcType="BIGINT"/>
+        <result column="OS" property="operatingSystem" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <collection property="cpuDetail" resultMap="detail"/>
+    </resultMap>
+    <resultMap id="detail" type="java.lang.String">
+        <result column="cpuDetail"/>
+    </resultMap>
+    <select id="queryDataById" resultMap="data">
+        select
+        cpuCount,
+        cpuUtilization,
+        availMem,
+        totalMem,
+        memUtilization,
+        `date`,
+        cpuDetail,
+        OS
+        from snmp_data where id = #{id}
+    </select>
+    <insert id="insertData" >
+        insert into snmp_data(
+        cpuCount,
+        cpuUtilization,
+        availMem,
+        totalMem,
+        memUtilization,
+        `date`,
+        cpuDetail,
+        OS
+        )values (
+        #{data.cpuCount},
+        #{data.cpuUtilization},
+        #{data.availMem},
+        #{data.totalMem},
+        #{data.memUtilization},
+        #{data.date},
+        #{data.cpuDetail},
+        #{data.operatingSystem}
+        )
+    </insert>
+    <select id="queryAllData" resultType="entry.Data">
+        select * from snmp_data;
+    </select>
+</mapper>
