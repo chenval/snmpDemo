@@ -7,7 +7,7 @@ import com.servermonitor.snmp.domain.entity.ServerMessage;
  * 从指定服务器获取信息的两种方式。
  * @author chenval
  */
-public interface SnmpMessageService {
+public interface SnmpMethodService {
     /**
      * 通过get的方式获得oid的信息
      * @param oid

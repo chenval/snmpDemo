@@ -2,6 +2,7 @@ package com.servermonitor.snmp.domain.entity;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ServerMonitorData {
     /**
      * cpu数量
@@ -47,6 +49,14 @@ public class ServerMonitorData {
      * 操作系统的类型
      * */
     private String operatingSystem;
+    /**
+     * ip
+     */
+    private String ip;
+    /**
+     * name
+     */
+    private String serverName;
 
 
 }

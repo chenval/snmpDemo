@@ -2,6 +2,7 @@ package com.servermonitor.snmp.app.service;
 
 
 import java.util.List;
+import com.servermonitor.snmp.domain.entity.ServerMessage;
 import com.servermonitor.snmp.domain.entity.ServerMonitorData;
 
 /**
@@ -13,5 +14,13 @@ public interface GetMonitorMessageService {
      * @return 所有服务器的监控信息
      */
     List<ServerMonitorData> getAllServerMessageNow();
+
+    /**
+     * 通过snmp查询当前服务器的信息
+     * @param serverMessage
+     * @return
+     */
+    ServerMonitorData getServerMessageNow(ServerMessage serverMessage);
+
 
 }

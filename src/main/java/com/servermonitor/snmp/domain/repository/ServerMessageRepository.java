@@ -11,6 +11,6 @@ public interface ServerMessageRepository {
      * 获得所有服务器
      * @return
      */
-    List<ServerMessage> getAllserver();
+    List<ServerMessage> getAllServer();
 
 }

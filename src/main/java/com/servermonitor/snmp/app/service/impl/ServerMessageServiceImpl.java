@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.List;
 import com.servermonitor.snmp.app.service.ServerMessageService;
-import com.servermonitor.snmp.app.service.SnmpMessageService;
+import com.servermonitor.snmp.app.service.SnmpMethodService;
 import com.servermonitor.snmp.domain.entity.ServerMessage;
 import com.servermonitor.snmp.infra.constant.code;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class ServerMessageServiceImpl implements ServerMessageService {
 
     @Autowired
-    SnmpMessageService snmpMessageService;
+    SnmpMethodService snmpMethodService;
 
     /**
      * 获取CPU使用率
@@ -30,7 +30,7 @@ public class ServerMessageServiceImpl implements ServerMessageService {
      */
     @Override
     public int getCpuUtilization(ServerMessage serverMessage) {
-        List<String> result = snmpMessageService.walkByTable(
+        List<String> result = snmpMethodService.walkByTable(
             code.ALL_CPU_DETAIL_WALK.getCode(), serverMessage);
         if (result == null || result.size() == 0) {
             return -1;
@@ -50,7 +50,7 @@ public class ServerMessageServiceImpl implements ServerMessageService {
      */
     @Override
     public List<String> getCpuCount(ServerMessage serverMessage) {
-        List<String> result = snmpMessageService.walkByTable(code.ALL_CPU_DETAIL_WALK.getCode(), serverMessage);
+        List<String> result = snmpMethodService.walkByTable(code.ALL_CPU_DETAIL_WALK.getCode(), serverMessage);
         if (result.size() == 0) {
             result.add("-1");
             return result;
@@ -100,16 +100,15 @@ public class ServerMessageServiceImpl implements ServerMessageService {
         /**
          * linux的部分oid和window的不同 该内存查询oid只能在linux上使用
          * */
-        List<String> freeMen = snmpMessageService.getByTable(code.FREE_MEM_GET.getCode(), serverMessage);
-        List<String> cacheMem = snmpMessageService.getByTable(code.CACHE_MEM_GET.getCode(), serverMessage);
-        List<String> bufferMem = snmpMessageService.getByTable(code.BUFFER_MEM_GET.getCode(), serverMessage);
+        List<String> freeMen = snmpMethodService.getByTable(code.FREE_MEM_GET.getCode(), serverMessage);
+        List<String> cacheMem = snmpMethodService.getByTable(code.CACHE_MEM_GET.getCode(), serverMessage);
+        List<String> bufferMem = snmpMethodService.getByTable(code.BUFFER_MEM_GET.getCode(), serverMessage);
         /**
          * 内存实际大小很可能超过int范围所以使用long，long有8字节完全能放下
          * */
         long used = Long.parseLong(freeMen.get(0));
         long buffer = Long.parseLong(bufferMem.get(0));
         long cache = Long.parseLong(cacheMem.get(0));
-        System.out.println(used + buffer + cache + "sss");
         return used + buffer + cache;
     }
 
@@ -124,8 +123,7 @@ public class ServerMessageServiceImpl implements ServerMessageService {
         /**
          * 获得总内存的大小
          * */
-        List<String> allresultList = snmpMessageService.getByTable(code.ALL_MEM_GET.getCode(), serverMessage);
-        System.out.println(allresultList.get(0));
+        List<String> allresultList = snmpMethodService.getByTable(code.ALL_MEM_GET.getCode(), serverMessage);
         return Long.parseLong(allresultList.get(0));
     }
 
@@ -151,7 +149,7 @@ public class ServerMessageServiceImpl implements ServerMessageService {
      */
     @Override
     public long getUsedMemWindows(ServerMessage serverMessage) {
-        List<String> test = snmpMessageService.walkByTable(code.EVERY_PROCESS_MEM_WALK.getCode(), serverMessage);
+        List<String> test = snmpMethodService.walkByTable(code.EVERY_PROCESS_MEM_WALK.getCode(), serverMessage);
         long res = 0;
         for (String x : test) {
             res += Long.parseLong(x);

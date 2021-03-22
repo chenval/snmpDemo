@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import com.servermonitor.snmp.app.service.SnmpMessageService;
+import com.servermonitor.snmp.app.service.SnmpMethodService;
 import com.servermonitor.snmp.domain.entity.ServerMessage;
-import com.servermonitor.snmp.infra.constant.CommunityTargetVersion;
+import com.servermonitor.snmp.infra.constant.ConstantCode;
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
  * @author chenval 2021/3/22
  */
 @Service
-public class SnmpMessageServiceImpl implements SnmpMessageService {
+public class SnmpMethodServiceImpl implements SnmpMethodService {
 
     private String communityName;
     /**
@@ -146,7 +146,7 @@ public class SnmpMessageServiceImpl implements SnmpMessageService {
              * */
             target = new CommunityTarget();
             target.setCommunity(new OctetString(communityName));
-            target.setVersion(CommunityTargetVersion.version);
+            target.setVersion(ConstantCode.COMMUNITY_TARGET_VERSION);
             target.setAddress(new UdpAddress(ip +"/"+port));
             target.setTimeout(1000);
             target.setRetries(1);

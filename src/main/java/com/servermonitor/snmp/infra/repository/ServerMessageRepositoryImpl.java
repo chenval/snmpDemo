@@ -5,16 +5,18 @@ import com.servermonitor.snmp.domain.entity.ServerMessage;
 import com.servermonitor.snmp.domain.repository.ServerMessageRepository;
 import com.servermonitor.snmp.infra.mapper.ServerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author chenval 2021/3/22
  */
+@Repository
 public class ServerMessageRepositoryImpl implements ServerMessageRepository {
 
     @Autowired
     ServerMapper serverMapper;
     @Override
-    public List<ServerMessage> getAllserver() {
+    public List<ServerMessage> getAllServer() {
         return serverMapper.getAllServer();
     }
 }

@@ -32,9 +32,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="snmp4j-2.8.0" level="project" />
-    <orderEntry type="library" name="Maven: org.snmp4j:snmp4j:3.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.snmp4j:snmp4j:2.6.3" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.14" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.11" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.8" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.4.5" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:easyexcel:2.2.0-beta2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.17" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
