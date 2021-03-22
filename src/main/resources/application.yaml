@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://116.62.7.128:3306/server_monitor_data?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://*******/server_monitor_data?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
     username: root
-    password: 402414521
+    password: *******
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
   mapper-locations: classpath:mapper/*.xml
