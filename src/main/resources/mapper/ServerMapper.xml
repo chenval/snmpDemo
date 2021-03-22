@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.servermonitor.snmp.infra.mapper.ServerMapper">
+    <resultMap id="serverResult" type="com.servermonitor.snmp.domain.entity.ServerMessage">
+        <result property="communityName" column="community_name" jdbcType="VARCHAR"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR"/>
+        <result property="port" column="snmp_port" jdbcType="INTEGER"/>
+        <result property="name" column="server_name" jdbcType="VARCHAR"/>
+        <result property="operationSystem" column="operation_system" jdbcType="VARCHAR"/>
+        <result property="statusId" column="status_id" jdbcType="TINYINT"/>
+    </resultMap>
+    <select id="getAllServer" resultMap="serverResult">
+        select ip, community_name, snmp_port, `server_name`, operation_system,status_id
+        from server_message
+    </select>
+</mapper>
