@@ -38,7 +38,7 @@ public class SnmpUtil {
             }
             count++;
         }
-        result.setDate(dateFormat.format(date));
+        result.setDate(date);
         result.setCpuDetail(cpuDe.toString());
 
         int cpu = serverMessageService.getCpuUtilization(serverMessage);
@@ -49,101 +49,20 @@ public class SnmpUtil {
 
         result.setCpuCount(serverMessageService.getCpuCount(serverMessage).size());
         int mem = 0;
-        if (ConstantCode.windows.equals(serverMessage.getOperationSystem())) {
+        if (ConstantCode.WINDOWS.equals(serverMessage.getOperationSystem())) {
             long usedMem = serverMessageService.getUsedMemWindows(serverMessage);
             mem = (int) (100 - (100 * usedMem) / totalMem);
             result.setMemUtilization(mem);
             result.setAvailMem(totalMem - usedMem);
-            result.setOperatingSystem(ConstantCode.windows);
+            result.setOperatingSystem(ConstantCode.WINDOWS);
         } else {
             long availMem = serverMessageService.getAvailMemoryLinux(serverMessage);
             mem = serverMessageService.getMemoryUtilization(availMem, totalMem);
             result.setAvailMem(availMem);
             result.setMemUtilization(mem);
-            result.setOperatingSystem(ConstantCode.linux);
+            result.setOperatingSystem(ConstantCode.LINUX);
         }
         return result;
     }
-
-//    public ServerMonitorData getMessageLinux(ServerMessage serverMessage) {
-//
-//        int cpu = serverMessageService.getCpuUtilization(serverMessage);
-//        long totalMem = serverMessageService.getTotalMemory(serverMessage);
-//        long availMem = serverMessageService.getAvailMemoryLinux(serverMessage);
-//        int mem = serverMessageService.getMemoryUtilization(availMem, totalMem);
-//        /**
-//         * 为javaBean赋值
-//         * */
-//        serverMonitorData.setDate(dateFormat.format(date));
-//
-//        serverMonitorData.setCpuCount(serverMessageService.getCpuCount(serverMessage).size());
-//
-//        /**
-//         * 将cpu详细信息转换为String
-//         * */
-//        StringBuilder cpuDe = new StringBuilder();
-//        int count = 1;
-//        List<String> cpus = serverMessageService.getCpuCount(serverMessage);
-//        for (String x : cpus) {
-//            cpuDe.append(x);
-//            if (count < cpus.size()) {
-//                cpuDe.append(",");
-//            }
-//            count++;
-//        }
-//        serverMonitorData.setCpuDetail(cpuDe.toString());
-//
-//        serverMonitorData.setCpuUtilization(cpu);
-//
-//        serverMonitorData.setAvailMem(availMem);
-//
-//        serverMonitorData.setTotalMem(totalMem);
-//
-//        serverMonitorData.setMemUtilization(mem);
-//
-//        serverMonitorData.setOperatingSystem("linux");
-//        return serverMonitorData;
-//    }
-//
-//    public ServerMonitorData getMessageWindows(ServerMessage serverMessage) {
-//        int cpu = serverMessageService.getCpuUtilization(serverMessage);
-//        long totalMem = serverMessageService.getTotalMemory(serverMessage);
-//        long usedMem = serverMessageService.getUsedMemWindows(serverMessage);
-//        long mem = 100 - (100 * usedMem) / totalMem;
-//        /**
-//         * 为javaBean赋值
-//         * */
-//        serverMonitorData.setDate(dateFormat.format(date));
-//        serverMonitorData.setCpuCount(serverMessageService.getCpuCount(serverMessage).size());
-//
-//        /**
-//         * 将cpu详细信息转换为String
-//         * */
-//        StringBuffer cpuDe = new StringBuffer();
-//        int count = 1;
-//        List<String> cpus = serverMessageService.getCpuCount(serverMessage);
-//        Iterator iterator = cpus.iterator();
-//        while (iterator.hasNext()) {
-//            cpuDe.append(iterator.next());
-//            if (count != cpus.size()) {
-//                cpuDe.append(",");
-//            }
-//            count++;
-//        }
-//
-//        serverMonitorData.setCpuDetail(cpuDe.toString());
-//
-//        serverMonitorData.setCpuUtilization(cpu);
-//
-//        serverMonitorData.setAvailMem(totalMem - usedMem);
-//
-//        serverMonitorData.setTotalMem(totalMem);
-//
-//        serverMonitorData.setMemUtilization((int) mem);
-//
-//        serverMonitorData.setOperatingSystem("windows");
-//
-//        return serverMonitorData;
-//    }
 
 }

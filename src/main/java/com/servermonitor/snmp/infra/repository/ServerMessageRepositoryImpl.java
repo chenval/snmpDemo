@@ -19,4 +19,9 @@ public class ServerMessageRepositoryImpl implements ServerMessageRepository {
     public List<ServerMessage> getAllServer() {
         return serverMapper.getAllServer();
     }
+
+    @Override
+    public ServerMessage getOneServer(String ip) {
+        return serverMapper.getOneServer(ip);
+    }
 }

@@ -1,6 +1,7 @@
 package com.servermonitor.snmp.domain.entity;
 
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,7 +44,7 @@ public class ServerMonitorData {
     /**
      * 时间
      * */
-    private String date;
+    private Date date;
 
     /**
      * 操作系统的类型

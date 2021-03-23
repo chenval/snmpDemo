@@ -2,6 +2,7 @@ package com.servermonitor.snmp.domain.repository;
 
 import com.servermonitor.snmp.domain.entity.ServerMonitorData;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @author chenval
  * @date 2020/6/17 10:05
  */
+
 public interface MonitorMessageRepository {
     /**
     * 根据id获得信息
@@ -33,8 +35,10 @@ public interface MonitorMessageRepository {
     void insertData(ServerMonitorData serverMonitorData);
 
     /**
-     *
+     * 存入全部信息
+     * @param list 存储列表
      */
+    int insertAllData(List<ServerMonitorData> list);
 
 
 }

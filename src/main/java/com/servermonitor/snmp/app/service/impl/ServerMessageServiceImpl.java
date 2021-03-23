@@ -61,9 +61,8 @@ public class ServerMessageServiceImpl implements ServerMessageService {
     /**
      * 获取Memory占用率
      *
-     * @param serverMessage
+     * @param serverMessage 目标服务器信息
      * @return 正常返回当前内存使用率，否则返回-1
-     * @throws IOException
      */
     @Override
     public int getMemoryUtilization(ServerMessage serverMessage) {
@@ -74,9 +73,9 @@ public class ServerMessageServiceImpl implements ServerMessageService {
         /**
          * 目标地址总的内存
          * */
-        long allresultList = getTotalMemory(serverMessage);
+        long allResultList = getTotalMemory(serverMessage);
 
-        return 100 - (int) ((freeMen * 100) / allresultList);
+        return 100 - (int) ((freeMen * 100) / allResultList);
     }
 
     /**

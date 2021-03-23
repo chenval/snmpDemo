@@ -131,19 +131,10 @@ public class SnmpMethodServiceImpl implements SnmpMethodService {
         ip = serverMessage.getIp();
         port = serverMessage.getPort();
         try {
-            /**
-             * 构造一个默认udp
-             * */
             DefaultUdpTransportMapping dm = new DefaultUdpTransportMapping();
-            /**
-             * 对snmp连接进行监听
-             * */
             snmp = new Snmp(dm);
             snmp.listen();
 
-            /**
-             * 对监听目标进行赋值
-             * */
             target = new CommunityTarget();
             target.setCommunity(new OctetString(communityName));
             target.setVersion(ConstantCode.COMMUNITY_TARGET_VERSION);
@@ -162,9 +153,6 @@ public class SnmpMethodServiceImpl implements SnmpMethodService {
                 }
                 result.add(vb[0].getVariable().toString());
             }
-            /**
-             * 关闭连接
-             * */
             snmp.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

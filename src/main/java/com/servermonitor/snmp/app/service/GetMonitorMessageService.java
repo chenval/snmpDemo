@@ -16,11 +16,12 @@ public interface GetMonitorMessageService {
     List<ServerMonitorData> getAllServerMessageNow();
 
     /**
-     * 通过snmp查询当前服务器的信息
-     * @param serverMessage
+     * 通过IP查询当前服务器的信息
+     * @param ip
      * @return
      */
-    ServerMonitorData getServerMessageNow(ServerMessage serverMessage);
+    ServerMonitorData getServerMessageNow(String ip);
+
 
 
 }

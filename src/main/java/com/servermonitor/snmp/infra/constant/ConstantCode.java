@@ -5,6 +5,6 @@ package com.servermonitor.snmp.infra.constant;
  */
 public interface ConstantCode {
     int COMMUNITY_TARGET_VERSION = 1;
-    String windows = "windows";
-    String linux = "linux";
+    String WINDOWS = "windows";
+    String LINUX = "linux";
 }

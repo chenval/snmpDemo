@@ -13,4 +13,9 @@
         select ip, community_name, snmp_port, `server_name`, operation_system,status_id
         from server_message
     </select>
+
+    <select id="getOneServer" resultMap="serverResult">
+        select ip, community_name, snmp_port, `server_name`, operation_system,status_id
+        from server_message where ip = #{ip}
+    </select>
 </mapper>

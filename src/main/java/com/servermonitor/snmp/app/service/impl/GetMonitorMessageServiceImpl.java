@@ -1,7 +1,6 @@
 package com.servermonitor.snmp.app.service.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import com.servermonitor.snmp.app.service.GetMonitorMessageService;
 import com.servermonitor.snmp.domain.entity.ServerMessage;
@@ -37,8 +36,7 @@ public class GetMonitorMessageServiceImpl implements GetMonitorMessageService {
     }
 
     @Override
-    public ServerMonitorData getServerMessageNow(ServerMessage serverMessage) {
-
-        return null;
+    public ServerMonitorData getServerMessageNow(String ip) {
+        return snmpUtil.getMessage(serverMessageRepository.getOneServer(ip));
     }
 }

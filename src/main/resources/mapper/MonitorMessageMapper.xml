@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.servermonitor.snmp.infra.mapper.MonitorMessageMapper">
+    <insert id="saveMonitorMessageAllServerNow" parameterType="java.util.List">
+        insert into monitor_message(
+                                    ip,
+                                    cpu_count,
+                                    cpu_detail,
+                                    cpu_utilization,
+                                    avail_mem,
+                                    total_mem,
+                                    mem_utilization,
+                                    `date`,
+                                    os,
+                                    `server_name`)values
+        <foreach collection="datas" item="message" index="index" separator=",">
+            (#{message.ip},
+             #{message.cpuCount},
+             #{message.cpuDetail},
+             #{message.cpuUtilization},
+             #{message.availMem},
+             #{message.totalMem},
+             #{message.memUtilization},
+             #{message.date},
+             #{message.operatingSystem},
+             #{message.serverName})
+        </foreach>
+    </insert>
+</mapper>
