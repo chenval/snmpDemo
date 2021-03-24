@@ -10,15 +10,15 @@ import com.servermonitor.snmp.domain.entity.ServerMessage;
 public interface SnmpMethodService {
     /**
      * 通过get的方式获得oid的信息
-     * @param oid
-     * @param serverMessage
+     * @param oid 查询指令
+     * @param serverMessage 服务器信息
      * @return List<String> 将结果返回为list集合
      */
     List<String> getByTable(String oid, ServerMessage serverMessage);
     /**
      * 通过walk查找oid对应的信息并返回list集合
-     * @param serverMessage
-     * @param oid
+     * @param serverMessage 服务器信息
+     * @param oid 查询指令
      * @return list<string>
      */
     List<String> walkByTable(String oid, ServerMessage serverMessage);

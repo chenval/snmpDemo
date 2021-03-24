@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.annotations.Result;
 
 /**
  * @author chenval
@@ -44,12 +45,13 @@ public class ServerMonitorData {
     /**
      * 时间
      * */
-    private Date date;
+    private String date;
 
     /**
      * 操作系统的类型
      * */
-    private String operatingSystem;
+
+    private String operationSystem;
     /**
      * ip
      */

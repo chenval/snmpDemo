@@ -17,4 +17,11 @@ public interface MonitorMessageMapper {
      * @return 成功数量
      */
     int saveMonitorMessageAllServerNow(@Param("datas") List<ServerMonitorData> serverMonitorData);
+
+    /**
+     * 存储监控信息
+     * @param ip 存储实体
+     * @return 成功数量
+     */
+    List<ServerMonitorData> selectMonitorMessageByIp(String ip);
 }

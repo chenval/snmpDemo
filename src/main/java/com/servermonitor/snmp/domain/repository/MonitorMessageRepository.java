@@ -40,5 +40,10 @@ public interface MonitorMessageRepository {
      */
     int insertAllData(List<ServerMonitorData> list);
 
-
+    /**
+     * 获得制定IP半小时内的数据
+     * @param ip ip地址
+     * @return 半小时结果
+     */
+    List<ServerMonitorData> getMonitorMessage(String ip);
 }

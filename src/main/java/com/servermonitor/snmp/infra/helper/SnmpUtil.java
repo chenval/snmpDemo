@@ -22,7 +22,7 @@ public class SnmpUtil {
     ServerMessageService serverMessageService;
 
     Date date = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
     public ServerMonitorData getMessage(ServerMessage serverMessage) {
         ServerMonitorData result = new ServerMonitorData();
@@ -38,7 +38,7 @@ public class SnmpUtil {
             }
             count++;
         }
-        result.setDate(date);
+        result.setDate(dateFormat.format(date));
         result.setCpuDetail(cpuDe.toString());
 
         int cpu = serverMessageService.getCpuUtilization(serverMessage);
@@ -54,13 +54,13 @@ public class SnmpUtil {
             mem = (int) (100 - (100 * usedMem) / totalMem);
             result.setMemUtilization(mem);
             result.setAvailMem(totalMem - usedMem);
-            result.setOperatingSystem(ConstantCode.WINDOWS);
+            result.setOperationSystem(ConstantCode.WINDOWS);
         } else {
             long availMem = serverMessageService.getAvailMemoryLinux(serverMessage);
             mem = serverMessageService.getMemoryUtilization(availMem, totalMem);
             result.setAvailMem(availMem);
             result.setMemUtilization(mem);
-            result.setOperatingSystem(ConstantCode.LINUX);
+            result.setOperationSystem(ConstantCode.LINUX);
         }
         return result;
     }

@@ -39,4 +39,9 @@ public class MonitorMessageRepositoryImp implements MonitorMessageRepository {
         return monitorMessageMapper.saveMonitorMessageAllServerNow(list);
     }
 
+    @Override
+    public List<ServerMonitorData> getMonitorMessage(String ip) {
+        return monitorMessageMapper.selectMonitorMessageByIp(ip);
+    }
+
 }
