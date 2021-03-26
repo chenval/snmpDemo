@@ -38,7 +38,15 @@ public class ServerMessage {
      * 状态(1为可用，0为不可用，默认为1)，用于是否对这个服务器进行监控
      * */
     private Integer statusId;
-    
+
+    /**
+     * cpu预警阈值
+     */
+    private  int cpuThreshold;
+    /**
+     * 内存阈值
+     */
+    private int memThreshold;
 
 
 }

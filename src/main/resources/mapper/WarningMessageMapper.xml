@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.servermonitor.snmp.infra.mapper.WarningMessageMapper">
+    <insert id="insertWarningMessage">
+        insert into warning_message  values (0,#{warningMessage.ip},#{warningMessage.message},now(),now(),1,false)
+    </insert>
+    <update id="updateWarningMessage">
+        update warning_merssage set count = count + 1,last_update_time = now(),warning_message = #{warningMessage.message} where ip = #{warningMessage.ip}
+    </update>
+    <select id="selectWarningMessageList" resultType="com.servermonitor.snmp.domain.entity.WarningMessage">
+        select *from warning_message where ip = #{ip} order by last_update_time desc limit #{num}
+    </select>
+    <update id="handleWarningMessage">
+        update warning_merssage set handle = true where ip = #{ip}
+    </update>
+</mapper>

@@ -8,14 +8,16 @@
         <result property="name" column="server_name" jdbcType="VARCHAR"/>
         <result property="operationSystem" column="operation_system" jdbcType="VARCHAR"/>
         <result property="statusId" column="status_id" jdbcType="TINYINT"/>
+        <result property="cpuThreshold" column="cpu_threshold" jdbcType="INTEGER"/>
+        <result property="memThreshold" column="mem_threshold" jdbcType="INTEGER"/>
     </resultMap>
     <select id="getAllServer" resultMap="serverResult">
-        select ip, community_name, snmp_port, `server_name`, operation_system,status_id
+        select ip, community_name, snmp_port, `server_name`, operation_system,status_id,cpu_threshold,mem_threshold
         from server_message
     </select>
 
     <select id="getOneServer" resultMap="serverResult">
-        select ip, community_name, snmp_port, `server_name`, operation_system,status_id
+        select ip, community_name, snmp_port, `server_name`, operation_system,status_id,cpu_threshold,mem_threshold
         from server_message where ip = #{ip}
     </select>
 </mapper>
